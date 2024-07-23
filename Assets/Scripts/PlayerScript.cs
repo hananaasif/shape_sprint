@@ -19,14 +19,21 @@ public class PlayerScript : MonoBehaviour
 
     private Coroutine shapeShift;
 
+    [SerializeField , Range(0,0.5f)]
+    private float increaseAmount=0.04f;
     [SerializeField]
-    private float increaseAmount=0.01f;
+    private float threshhold = 0f;
 
     private float initialWidth;
     private float initialHeight;
 
-    private float coolDownTime = 0f;
+    [SerializeField]
+    private float maxHeight = 2f;
+    [SerializeField]
+    private float minHeight = 0.3f;
 
+    [SerializeField]
+    private float speed = 50f;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +47,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.V))
         {
             convertShape();
@@ -65,6 +73,7 @@ public class PlayerScript : MonoBehaviour
 
     public void shiftshape(Vector2 startPosition)
     {
+
         Debug.Log("Shape Shiftinggggggggg");
         initialWidth=currentShape.transform.localScale.x;
         initialHeight=currentShape.transform.localScale.y;
@@ -74,48 +83,65 @@ public class PlayerScript : MonoBehaviour
     public void stopShapeShift()
     {
         StopCoroutine(shapeShift);
+        shapeShift = null;
     }
     private IEnumerator shapeShiftCoroutine(Vector2 startPosition)
     {
         Debug.Log("Shape ShiftingFunctionnnnnn");
-         
-            if (coolDownTime < 0.2f)
-            {
-                Debug.Log("Waitinggggg");
+        while(true)
+        {
+            
+            
+            
+            Debug.Log("Shape Shifting");
+            Vector3 direction = inputManager.PrimaryPosition() - startPosition;
+            Debug.Log("PrimaryPosition" + inputManager.PrimaryPosition());
+            Debug.Log("startPosition" + startPosition);
 
-                coolDownTime += Time.deltaTime;
+            Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+            float changeInHeight = 0f;
+            if (Vector2.Dot(Vector2.up, direction2D) > threshhold)
+            {
+                changeInHeight = 1f;
+                Debug.Log("11111111111111111111");
+            }
+            else if (Vector2.Dot(Vector2.down, direction2D) > threshhold)
+            {
+                changeInHeight = -1f;
+                Debug.Log("00000000000000000000");
+
+            }
+            float currentHeight = currentShape.transform.localScale.y;
+            float newHeight = currentHeight + increaseAmount * changeInHeight;
+
+            // Calculate the new width required to maintain the same area
+            float currentWidth = currentShape.transform.localScale.x;
+            float newWidth = (initialWidth * initialHeight) / newHeight;
+
+            if(newHeight<maxHeight && newHeight>minHeight)
+            {
+                // Apply the new scale to the GameObject
+                Debug.Log("Height" + " Width" + currentShape.transform.localScale);
+                currentShape.transform.localScale = new Vector3(newWidth, newHeight, transform.localScale.z);
+                Debug.Log("Height" + " Width" + currentShape.transform.localScale);
+
             }
             else
             {
-                coolDownTime = 0;
-                Debug.Log("Shape Shifting");
-                Vector3 direction = inputManager.PrimaryPosition() - startPosition;
-                Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
-                float changeInHeight = 0f;
-                if (Vector2.Dot(Vector2.up, direction) > 0.5)
-                {
-                    changeInHeight = 1f;
-                }
-                else if (Vector2.Dot(Vector2.down, direction) > 0.5)
-                {
-                    changeInHeight = -1f;
-                }
-                float currentHeight = transform.localScale.y;
-                float newHeight = currentHeight + increaseAmount * changeInHeight;
-
-                // Calculate the new width required to maintain the same area
-                float currentWidth = transform.localScale.x;
-                float newWidth = (initialWidth * initialHeight) / newHeight;
-
-                // Apply the new scale to the GameObject
-                transform.localScale = new Vector3(newWidth, newHeight, transform.localScale.z);
+                Debug.Log("Height Limit Reached");
             }
-        
-        
             
-        
 
-        yield return null;
+
+            yield return null;
+    }
+
+
+
+
+
+
+
     }
 
 }

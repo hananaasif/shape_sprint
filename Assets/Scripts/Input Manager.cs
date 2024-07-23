@@ -75,7 +75,8 @@ public class InputManager : MonoBehaviour
     public Vector2 PrimaryPosition()
     {
         Vector3 Touchposition = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
+        Vector3 screenToWorldPosition = Utilities.ScreenToWorld(mainCamera, Touchposition);
 
-        return Utilities.ScreenToWorld(mainCamera, Touchposition);
+        return screenToWorldPosition;
     }
 }
