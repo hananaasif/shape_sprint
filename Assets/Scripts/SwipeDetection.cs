@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeDetection : MonoBehaviour
+public class InputDetection : MonoBehaviour
 {
     [SerializeField]
     private GameObject Manager;
@@ -37,14 +37,21 @@ public class SwipeDetection : MonoBehaviour
 
     private void OnEnable()
     {
+
+        //Subscribe to the OnStartTouch Event so that when the event is trigerred, SwipeStart is called
         inputManager.OnStartTouch += SwipeStart;
         inputManager.OnEndTouch += SwipeEnd;
+        inputManager.DoubleTapEvent += changeShape;
     }
 
     private void OnDisable()
     {
+        //UnSubscribe from the OnStartTouch Event 
+
         inputManager.OnStartTouch -= SwipeStart;
         inputManager.OnEndTouch -= SwipeEnd;
+        inputManager.DoubleTapEvent -= changeShape;
+
     }
     private void SwipeStart(Vector2 position, float time)
     {
@@ -100,5 +107,10 @@ public class SwipeDetection : MonoBehaviour
         {
             Debug.Log("Swipe Left Bossss");
         }
+    }
+
+    private void changeShape()
+    {
+        playerScript.convertShape();
     }
 }

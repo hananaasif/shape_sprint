@@ -44,6 +44,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DoubleTap"",
+                    ""type"": ""Button"",
+                    ""id"": ""547166e3-0763-45da-8d20-28f41801e47b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Primary Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fa3244a-ddbb-41c5-9350-a6fb7ac1a89d"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DoubleTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
         m_Touch_PrimaryContact = m_Touch.FindAction("Primary Contact", throwIfNotFound: true);
         m_Touch_PrimaryPosition = m_Touch.FindAction("Primary Position", throwIfNotFound: true);
+        m_Touch_DoubleTap = m_Touch.FindAction("DoubleTap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +162,14 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private List<ITouchActions> m_TouchActionsCallbackInterfaces = new List<ITouchActions>();
     private readonly InputAction m_Touch_PrimaryContact;
     private readonly InputAction m_Touch_PrimaryPosition;
+    private readonly InputAction m_Touch_DoubleTap;
     public struct TouchActions
     {
         private @PlayerActions m_Wrapper;
         public TouchActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @PrimaryContact => m_Wrapper.m_Touch_PrimaryContact;
         public InputAction @PrimaryPosition => m_Wrapper.m_Touch_PrimaryPosition;
+        public InputAction @DoubleTap => m_Wrapper.m_Touch_DoubleTap;
         public InputActionMap Get() { return m_Wrapper.m_Touch; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +185,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @PrimaryPosition.started += instance.OnPrimaryPosition;
             @PrimaryPosition.performed += instance.OnPrimaryPosition;
             @PrimaryPosition.canceled += instance.OnPrimaryPosition;
+            @DoubleTap.started += instance.OnDoubleTap;
+            @DoubleTap.performed += instance.OnDoubleTap;
+            @DoubleTap.canceled += instance.OnDoubleTap;
         }
 
         private void UnregisterCallbacks(ITouchActions instance)
@@ -172,6 +198,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @PrimaryPosition.started -= instance.OnPrimaryPosition;
             @PrimaryPosition.performed -= instance.OnPrimaryPosition;
             @PrimaryPosition.canceled -= instance.OnPrimaryPosition;
+            @DoubleTap.started -= instance.OnDoubleTap;
+            @DoubleTap.performed -= instance.OnDoubleTap;
+            @DoubleTap.canceled -= instance.OnDoubleTap;
         }
 
         public void RemoveCallbacks(ITouchActions instance)
@@ -193,5 +222,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     {
         void OnPrimaryContact(InputAction.CallbackContext context);
         void OnPrimaryPosition(InputAction.CallbackContext context);
+        void OnDoubleTap(InputAction.CallbackContext context);
     }
 }

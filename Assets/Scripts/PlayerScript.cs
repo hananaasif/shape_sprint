@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,12 +16,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private GameObject sphere;
     private GameObject currentShape;
+
     private string namee;
 
     private Coroutine shapeShift;
 
-    [SerializeField , Range(0,0.5f)]
-    private float increaseAmount=0.04f;
+    [SerializeField , Range(0,1f)]
+    private float increaseAmount;
     [SerializeField]
     private float threshhold = 0f;
 
@@ -28,40 +30,57 @@ public class PlayerScript : MonoBehaviour
     private float initialHeight;
 
     [SerializeField]
-    private float maxHeight = 2f;
+    private float maxHeight;
     [SerializeField]
-    private float minHeight = 0.3f;
+    private float minHeight;
 
     [SerializeField]
-    private float speed = 50f;
+    private CinemachineVirtualCamera virtualCamera;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         inputManager = Manager.GetComponent<InputManager>();
         currentShape = Instantiate(cube, transform.position, transform.rotation, transform);
+        setCamera(currentShape);
         namee = "Cube";
+        saveSize();
 
 
     }
+    //Saves the original size to calculate max and min size
+    private void saveSize()
+    {
+        maxHeight = 2.5f * currentShape.transform.localScale.y;
+        minHeight = 0.2f * currentShape.transform.localScale.y;
+        increaseAmount = 0.04f * currentShape.transform.localScale.x;
 
+
+    }
+    //Sets the camera to follow the player shape
+    private void setCamera(GameObject target)
+    {
+        virtualCamera.LookAt = target.transform;
+        virtualCamera.Follow = target.transform;
+
+    }
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            convertShape();
-        }
+        
         
     }
-    private void convertShape()
+    public void convertShape()
     {
+        Debug.Log("Converting Shape(Function)");
+
         Vector3 position = currentShape.transform.position;
         Quaternion rotation = currentShape.transform.rotation;
         Destroy(currentShape);
         if (namee == "Cube")
         {
-            currentShape = Instantiate(sphere, position, rotation, transform);
+            currentShape = Instantiate(sphere, position, rotation,transform);
             namee = "Sphere";
         }
         else if (namee == "Sphere")
@@ -69,6 +88,10 @@ public class PlayerScript : MonoBehaviour
             currentShape = Instantiate(cube, position, rotation, transform);
             namee = "Cube";
         }
+        saveSize();
+        setCamera(currentShape);
+
+
     }
 
     public void shiftshape(Vector2 startPosition)
@@ -122,7 +145,7 @@ public class PlayerScript : MonoBehaviour
             {
                 // Apply the new scale to the GameObject
                 Debug.Log("Height" + " Width" + currentShape.transform.localScale);
-                currentShape.transform.localScale = new Vector3(newWidth, newHeight, transform.localScale.z);
+                currentShape.transform.localScale = new Vector3(newWidth, newHeight, currentShape.transform.localScale.z);
                 Debug.Log("Height" + " Width" + currentShape.transform.localScale);
 
             }
