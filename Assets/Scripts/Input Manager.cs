@@ -40,6 +40,11 @@ public class InputManager : MonoBehaviour
 
         playerControls.Disable();
     }
+    public void disablePlayerControls()
+    {
+        playerControls.Disable();
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -48,7 +53,7 @@ public class InputManager : MonoBehaviour
         //When touch starts/ends, functions after arrows are called and given the context
         playerControls.Touch.PrimaryContact.started += context => StartPrimaryTouch(context);
         playerControls.Touch.PrimaryContact.canceled += context => EndPrimaryTouch(context);
-        playerControls.Touch.DoubleTap.started += _ => DoubleTapStarted();
+        //playerControls.Touch.DoubleTap.started+= _ => DoubleTapStarted();
 
     }
     private void DoubleTapStarted()

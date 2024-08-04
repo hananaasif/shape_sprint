@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4383127429645100690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8909515053095814879}
   - component: {fileID: 2595952883142860224}
   - component: {fileID: 3171468144234018596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 7338852394416649221}
   - component: {fileID: 5613870558069813863}
   - component: {fileID: 7709104382962046971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 7149859255980860965}
   - component: {fileID: 981640684378439147}
   - component: {fileID: 6596989879277505072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: broken2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4906087107705651135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 84.131935, y: -7.1, z: -16.739971}
-  m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4383127429645100690}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 6497813234897195824}
   - component: {fileID: 5710355592945569240}
   - component: {fileID: 4796634293098434343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: broken1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 7938656469280094083}
   - component: {fileID: 6104897609503376124}
   - component: {fileID: 7987508790411016175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 9209503215032943456}
   - component: {fileID: 4125536903896600712}
   - component: {fileID: 5217666139058021341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 7186220071194294468}
   - component: {fileID: 6082566422014598135}
   - component: {fileID: 1152377475803777050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: broken3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 3876862042052077983}
   - component: {fileID: 9173176258127091011}
   - component: {fileID: 6811222164263824136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,8 @@ GameObject:
   - component: {fileID: 1403799978889264177}
   - component: {fileID: 9063877438394165363}
   - component: {fileID: 8927032974393140907}
-  m_Layer: 0
+  - component: {fileID: 3419346280118915252}
+  m_Layer: 3
   m_Name: CircleWhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +979,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1017,3 +1018,25 @@ MonoBehaviour:
   - {fileID: 5489525615040112225}
   - {fileID: 5159557091153979752}
   - {fileID: 8530552028119631734}
+  textAnimator: {fileID: 0}
+--- !u!65 &3419346280118915252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986880878881397280}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023546968, y: 0.026300466, z: 0.0033033958}
+  m_Center: {x: 0.0013767421, y: 4.6195926e-11, z: -0.0035971897}

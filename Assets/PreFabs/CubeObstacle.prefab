@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 367784732205183946}
   - component: {fileID: 5997662140676969155}
   - component: {fileID: 7296732706697737099}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8834629900885270895}
   - component: {fileID: 3120178008404879600}
   - component: {fileID: 8715842319905796297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: broken1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6155296747260533037}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CubeObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1565930126246092045}
   - component: {fileID: 1614791169469295881}
   - component: {fileID: 5954675366053090680}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: broken2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 1290897657081204385}
   - component: {fileID: 1109522636597082898}
   - component: {fileID: 7337887674631706365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: broken3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 7877176078018992005}
   - component: {fileID: 4695291764146015111}
   - component: {fileID: 8287808194650606632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 6147975151435523665}
   - component: {fileID: 5123050828342701443}
   - component: {fileID: 6366261247644071598}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,8 @@ GameObject:
   - component: {fileID: 8977230756014845004}
   - component: {fileID: 69613234780492578}
   - component: {fileID: 2881446285025770554}
-  m_Layer: 0
+  - component: {fileID: 998196577666854677}
+  m_Layer: 6
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +734,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e35321a156d75554eaf2b3f89fda2bbb, type: 2}
+  - {fileID: 2100000, guid: 0576b3490a5948442aace3fadba823bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -771,3 +772,25 @@ MonoBehaviour:
   - {fileID: 3286203549423197177}
   - {fileID: 3534763942613350427}
   - {fileID: 5822936140728410618}
+  textAnimator: {fileID: 0}
+--- !u!65 &998196577666854677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123003564771789263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013984844, y: 0.020033075, z: 0.15923677}
+  m_Center: {x: -0.007404769, y: 0.010064933, z: 0.0000000846117}

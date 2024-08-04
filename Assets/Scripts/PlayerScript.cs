@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UIElements;
+using UnityEngine.Splines;
+using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     
     [SerializeField]
     private GameObject sphere;
+    [SerializeField]
     private GameObject currentShape;
 
     private string namee;
@@ -37,23 +41,53 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
 
-    
+    [SerializeField]
+    private SplineAnimate splineScript;
+
+
+    [Header("Virtual Camera Rotation Settings")]
+    //Virtual Camera settings
+    [SerializeField] private float distance = 5.0f; // Distance from the player
+    [SerializeField] private float speed = 30.0f; // Speed of rotation
+    [SerializeField] private float pitch = 10.0f; // Pitch angle (up/down rotation)
+    [SerializeField] private float yaw = 0.0f; 
+
+
     // Start is called before the first frame update
     void Start()
     {
+       
+
         inputManager = Manager.GetComponent<InputManager>();
-        currentShape = Instantiate(cube, transform.position, transform.rotation, transform);
+        
         setCamera(currentShape);
         namee = "Cube";
         saveSize();
 
 
     }
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            splineScript.Pause();
+            if (splineScript.IsPlaying)
+            {
+                splineScript.Pause();
+            }
+            else
+            {
+                splineScript.Play();
+            }
+            
+        }
+
+    }
     //Saves the original size to calculate max and min size
     private void saveSize()
     {
-        maxHeight = 2.5f * currentShape.transform.localScale.y;
-        minHeight = 0.2f * currentShape.transform.localScale.y;
+        maxHeight = 1.7f * currentShape.transform.localScale.y;
+        minHeight = 0.4f * currentShape.transform.localScale.y;
         increaseAmount = 0.04f * currentShape.transform.localScale.x;
 
 
@@ -66,11 +100,7 @@ public class PlayerScript : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
+    
     public void convertShape()
     {
         Debug.Log("Converting Shape(Function)");
@@ -93,6 +123,32 @@ public class PlayerScript : MonoBehaviour
 
 
     }
+    public void convertToCube()
+    {
+        if(namee!="Cube")
+        {
+            Vector3 position = currentShape.transform.position;
+            Quaternion rotation = currentShape.transform.rotation;
+            Destroy(currentShape);
+            currentShape = Instantiate(cube, position, rotation, transform);
+            namee = "Cube";
+        }
+        saveSize();
+        setCamera(currentShape);
+    }
+    public void convertToSphere()
+    {
+        if (namee != "Sphere")
+        {
+            Vector3 position = currentShape.transform.position;
+            Quaternion rotation = currentShape.transform.rotation;
+            Destroy(currentShape);
+            currentShape = Instantiate(sphere, position, rotation, transform);
+            namee = "Sphere";
+        }
+        saveSize();
+        setCamera(currentShape);
+    }
 
     public void shiftshape(Vector2 startPosition)
     {
@@ -113,8 +169,6 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("Shape ShiftingFunctionnnnnn");
         while(true)
         {
-            
-            
             
             Debug.Log("Shape Shifting");
             Vector3 direction = inputManager.PrimaryPosition() - startPosition;
@@ -145,7 +199,13 @@ public class PlayerScript : MonoBehaviour
             {
                 // Apply the new scale to the GameObject
                 Debug.Log("Height" + " Width" + currentShape.transform.localScale);
-                currentShape.transform.localScale = new Vector3(newWidth, newHeight, currentShape.transform.localScale.z);
+                if (namee == "Sphere")
+                    currentShape.transform.localScale = new Vector3(newHeight, newHeight, newHeight);
+
+                else
+                    currentShape.transform.localScale = new Vector3(newWidth, newHeight, currentShape.transform.localScale.z);
+
+                
                 Debug.Log("Height" + " Width" + currentShape.transform.localScale);
 
             }
@@ -164,6 +224,25 @@ public class PlayerScript : MonoBehaviour
 
 
 
+
+    }
+
+    public void LevelCompleted()
+    {
+        yaw += speed * Time.deltaTime;
+        float horizontalOffset = Mathf.Cos(yaw * Mathf.Deg2Rad) * distance;
+        float verticalOffset = Mathf.Sin(yaw * Mathf.Deg2Rad) * distance;
+        Vector3 offset = new Vector3(horizontalOffset, 0, verticalOffset);
+
+        // Apply pitch
+        Vector3 position = currentShape.transform.position + offset;
+        position.y += Mathf.Sin(pitch * Mathf.Deg2Rad) * distance;
+
+        // Set camera position and look at the player
+        
+        virtualCamera.transform.LookAt(currentShape.transform.position + Vector3.up * (distance * Mathf.Sin(pitch * Mathf.Deg2Rad)));
+        // Keep the camera looking at the player
+        virtualCamera.transform.LookAt(currentShape.transform.position);
 
     }
 

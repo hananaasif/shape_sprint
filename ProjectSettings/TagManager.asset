@@ -3,15 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Water
+  - AudioSource
+  - Canvas
+  - Perfect
+  - SoundEffects
+  - Music
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cube
   - Water
   - UI
-  - 
+  - Sphere
   - 
   - 
   - 

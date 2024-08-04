@@ -19,10 +19,11 @@ public class SphereScript : MonoBehaviour
     {
         //float rotationAmount = speed * Time.deltaTime;
         //transform.Rotate(rotationAmount, 0, 0);
+
         transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, transform.localScale.y);
 
 
     }
-    
+
 }
 

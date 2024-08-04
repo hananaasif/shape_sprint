@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class ObstacleCollider : MonoBehaviour
 {
+    private int count = 0;
     [SerializeField]
     private CubeObstacle obstacle;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,7 @@ public class ObstacleCollider : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        
         Debug.Log("Breakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
         obstacle.breakIt();
     }
