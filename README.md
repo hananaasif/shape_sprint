@@ -1,4 +1,35 @@
-1. Start from the main menu and open level selection.
+# Shape Sprint
+
+A 3D, mobile-oriented runner built with **Unity and C#**. Switch between a cube and a sphere, move between three lanes, collect coins, and navigate shape-based obstacles across six authored levels.
+
+## Gameplay video
+
+[Watch Shape Sprint gameplay on YouTube](https://youtu.be/TKDkQiinLcs?si=J-WU7e8BZ7MtaALF)
+
+## Overview
+
+Shape Sprint combines automatic forward movement with quick decisions about position and shape. The player follows a spline-defined course while choosing a lane and changing form to navigate the track. Breakable obstacles reduce health, lethal hazards end the run, and reaching the finish saves progress and unlocks the next level.
+
+The project includes a main menu, a level selection screen, six gameplay scenes, tutorial prompts, audio feedback, and completion effects. It is structured around Unity components, prefabs, serialized Inspector references, and scene-based progression.
+
+## Features
+
+- **Two player forms:** switch between cube and sphere prefabs while preserving position and rotation.
+- **Three-lane movement:** move left or right within a bounded lane layout, with a two-unit offset per lane change.
+- **Spline-based traversal:** Unity Splines drives movement along the course.
+- **Following camera:** Cinemachine tracks the player's parent transform as the active shape changes.
+- **Touch gestures:** horizontal swipes trigger lane changes through Unity's Input System.
+- **Shape selection buttons:** UI actions explicitly select the cube or sphere.
+- **Guided tutorial:** trigger-based prompts introduce shape selection and horizontal swipes, pausing gameplay while awaiting the required action.
+- **Shape-based obstacles:** cube and circular obstacle components activate broken pieces and apply damage on collision.
+- **Health feedback:** five starting health points, a health slider, and a red low-health indicator.
+- **Collectibles:** rotating coins increment an on-screen counter and play a collection sound.
+- **Progression:** completed levels unlock subsequent levels using local PlayerPrefs storage.
+- **Game menus:** pause, resume, retry, main-menu navigation, game-over, and level-completion screens.
+- **Loading UI:** asynchronous scene loading with a progress slider for routes handled by the loading component.
+- **Audio and effects:** gameplay and victory music, obstacle and pickup sounds, vibration calls, player breakup effects, and physics-driven confetti.
+
+## How to play1. Start from the main menu and open level selection.
 2. Select an unlocked level. New progress begins at Level 1.
 3. Follow the tutorial prompts where present.
 4. Swipe horizontally to change lanes and use the shape buttons to select the appropriate form.
@@ -18,24 +49,6 @@
 | Toggle audio | Volume button | Toggles music and sound-effect source muting. |
 
 The input asset also defines a double-tap action, and scripts contain a shape-toggle handler. However, the current `InputManager` does not connect that action to its event, so double-tap switching should be treated as unfinished. Vertical swipes are detected and logged but do not currently perform a gameplay action.
-
-## Technology
-
-| Technology | Version / role |
-| --- | --- |
-| Unity Editor | **2022.3.37f1** |
-| C# | Gameplay, input, UI, audio, and progression scripts |
-| Universal Render Pipeline | 14.0.11 |
-| Unity Input System | 1.7.0 |
-| Cinemachine | 2.10.1 |
-| Unity Splines | 2.6.1 |
-| TextMeshPro | 3.0.6 |
-| Unity UI | Menus, buttons, health slider, and loading UI |
-| ProBuilder | 5.2.2, included in the project dependencies |
-| Unity Physics | Collisions, triggers, breakup objects, and confetti |
-| PlayerPrefs | Local level and coin persistence |
-
-The package manifest also includes Shader Graph, Timeline, Terrain Tools, Visual Scripting, and Android Adaptive Performance providers. Package inclusion alone does not imply every package is used by gameplay.
 
 ## Getting started
 
